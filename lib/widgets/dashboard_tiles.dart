@@ -118,7 +118,7 @@ class _DashboardTilesState extends State<DashboardTiles> {
                         context,
                         MaterialPageRoute(
                             builder: (_) =>
-                              TasksScreen()));
+                              OffDaysApplicationScreen(username: widget.username,)));
                   },
                   child: const Card(
                     margin: EdgeInsets.all(10),

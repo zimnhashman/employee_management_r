@@ -176,37 +176,38 @@ class _LoginPageState extends State<LoginPage> {
                                         name: _usernameController.text,
                                         userId: _usernameController.text,
                                       )));
-                        } else {
-                          // _perfomLogin();
-                           void showSnackbar(BuildContext context) {
-                            final snackBar = SnackBar(
-                              content: const Text(
-                                  'Database Log In Successful!'),
-                              duration: const Duration(seconds: 5),
-                              // Optional, default is 4 seconds
-                              action: SnackBarAction(
-                                label: 'Dismiss',
-                                onPressed: () {
-                                  ScaffoldMessenger.of(context)
-                                      .hideCurrentSnackBar();
-                                },
-                              ),
-                            );
-                            // Show the snackbar
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                snackBar);
-                          }
-                          showSnackbar(context);
-
-                           Navigator.push(
-                               context,
-                               MaterialPageRoute(
-                                   builder: (_) =>
-                                       Dashboard(
-                                         name: _usernameController.text,
-                                         userId: _usernameController.text,
-                                       )));
-                        }
+                         }
+        // else {
+                        //   // _perfomLogin();
+                        //    void showSnackbar(BuildContext context) {
+                        //     final snackBar = SnackBar(
+                        //       content: const Text(
+                        //           'Database Log In Successful!'),
+                        //       duration: const Duration(seconds: 5),
+                        //       // Optional, default is 4 seconds
+                        //       action: SnackBarAction(
+                        //         label: 'Dismiss',
+                        //         onPressed: () {
+                        //           ScaffoldMessenger.of(context)
+                        //               .hideCurrentSnackBar();
+                        //         },
+                        //       ),
+                        //     );
+                        //     // Show the snackbar
+                        //     ScaffoldMessenger.of(context).showSnackBar(
+                        //         snackBar);
+                        //   }
+                        //   showSnackbar(context);
+                        //
+                        //    Navigator.push(
+                        //        context,
+                        //        MaterialPageRoute(
+                        //            builder: (_) =>
+                        //                Dashboard(
+                        //                  name: _usernameController.text,
+                        //                  userId: _usernameController.text,
+                        //                )));
+                        // }
                       },
                       child: const MyButton(
                         text: 'LOGIN',
