@@ -1,7 +1,9 @@
 import 'package:employee_management_r/screens/admin/announcements_screen.dart';
 import 'package:employee_management_r/screens/admin/tasks.dart';
+import 'package:employee_management_r/screens/employee/dailywork_report.dart';
 import 'package:employee_management_r/screens/employee/employee_applications.dart';
 import 'package:employee_management_r/screens/employee/employee_profile.dart';
+import 'package:employee_management_r/screens/employee/employee_sales.dart';
 import 'package:flutter/material.dart';
 import 'package:employee_management_r/constants/colors.dart';
 
@@ -50,26 +52,28 @@ class _DashboardTilesState extends State<DashboardTiles> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Welcome ${widget.username},',
-                style: const TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
+              Center(
+                child: Text(
+                  'Menu',
+                  style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
               ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Have a nice day!',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
-                  ),
-                  Icon(Icons.tag_faces, color: Colors.white)
-                ],
-              ),
+              // const Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text(
+              //       'Have a nice day!',
+              //       style: TextStyle(
+              //           fontSize: 20,
+              //           fontWeight: FontWeight.w500,
+              //           color: Colors.white),
+              //     ),
+              //     Icon(Icons.tag_faces, color: Colors.white)
+              //   ],
+              // ),
             ],
           ),
         ),
@@ -164,7 +168,7 @@ class _DashboardTilesState extends State<DashboardTiles> {
                           Icon(Icons.science_outlined,
                               size: 50, color: primaryColor),
                           Text(
-                            'Tasks',
+                            'News',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           )
@@ -191,10 +195,70 @@ class _DashboardTilesState extends State<DashboardTiles> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(Icons.add_alarm_outlined,
+                          Icon(Icons.person,
                               size: 50, color: primaryColor),
                           Text(
                             'Employee Profile',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) =>  EmployeeSales()));
+                  },
+                  child: const Card(
+                    margin: EdgeInsets.all(10),
+                    color: cardColor,
+                    elevation: 5.0,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(Icons.attach_money,
+                              size: 50, color: primaryColor),
+                          Text(
+                            'Sales Report',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (_) =>  DailyWorkReport()));
+                  },
+                  child: const Card(
+                    margin: EdgeInsets.all(10),
+                    color: cardColor,
+                    elevation: 5.0,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(Icons.wallet_travel_outlined,
+                              size: 50, color: primaryColor),
+                          Text(
+                            'Work Report',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           )
