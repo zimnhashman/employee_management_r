@@ -51,25 +51,13 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Welcome ${widget.username},',
+                        'Welcome ${widget.username}',
                         style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w500,
                             color: Colors.white),
                       ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Have a nice day!',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                          Icon(Icons.tag_faces, color: Colors.white)
-                        ],
-                      ),
+
                     ],
                   ),
                 ),

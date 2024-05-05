@@ -1,6 +1,8 @@
 import 'package:employee_management_r/constants/colors.dart';
+import 'package:employee_management_r/database/database_helper.dart';
 import 'package:employee_management_r/screens/admin/admin_dashboard.dart';
 import 'package:employee_management_r/screens/employee/employee_dashboard.dart';
+import 'package:employee_management_r/screens/signup_page.dart';
 import 'package:employee_management_r/widgets/mybutton.dart';
 import 'package:employee_management_r/widgets/mytextfield.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  DatabaseHelper dbHelper = DatabaseHelper.instance;
 
   void _showSnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -24,7 +27,27 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  void _login(String username, String password) {
+
+  Future<void> _login(String username, String password) async {
+
+    String username = _usernameController.text.trim();
+    String password = _passwordController.text.trim();
+
+    if (username.isNotEmpty && password.isNotEmpty) {
+      // For demonstration purposes, let's check against a local database.
+      // Map<String, dynamic> user = await databaseHelper.getUserByUsername(username);
+
+      // if (user.isNotEmpty && user['password'] == password) {
+      //   // Successful login
+      //   _showSnackbar('Login successful!');
+      //   Navigator.push(context, MaterialPageRoute(builder: (_) => AdminDashboard(username: _usernameController.text)));
+      // } else {
+      //   // Failed login
+      //   _showSnackbar('Invalid username or password.');
+      // }
+    } else {
+      _showSnackbar('Please enter both username and password.');
+    }
     if (username == 'admin' && password == 'admin') {
       _showSnackbar('$username logged in successfully');
       Navigator.push(context, MaterialPageRoute(builder: (_) => AdminDashboard(username: _usernameController.text)));
@@ -81,6 +104,12 @@ class _LoginPageState extends State<LoginPage> {
                       btnRadius: 8,
                     ),
                   ),
+                  const SizedBox(height: 10.0,),
+                  GestureDetector(
+                    onTap:  () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SignUp())),
+                      child:  const Text('Not Registered........Sign Up Here!', style: TextStyle(
+                        fontSize: 15.0,
+                      ))),
                 ],
               ),
             ),
