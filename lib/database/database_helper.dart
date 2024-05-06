@@ -64,8 +64,70 @@ class DatabaseHelper {
             FOREIGN KEY (employee_id) REFERENCES Users(id)
           )
         ''');
+
+        // Create Sales table
+        await db.execute('''
+          CREATE TABLE Sales (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            date TEXT,
+            sales INTEGER
+          )
+        ''');
       },
     );
+  }
+
+
+  // Add this method to fetch user data by username and password
+  Future<Map<String, dynamic>?> getUserByUsernameAndPassword(String username, String password) async {
+    Database db = await database;
+    List<Map<String, dynamic>> users = await db.query(
+      'Users',
+      where: 'username = ? AND password = ?',
+      whereArgs: [username, password],
+    );
+    return users.isNotEmpty ? users.first : null;
+  }
+
+
+  // CRUD operations for Sales table
+  Future<int> insertSale(Map<String, dynamic> sale) async {
+    Database db = await database;
+    return await db.insert('Sales', sale);
+  }
+
+  Future<List<Map<String, dynamic>>> getAllSales() async {
+    Database db = await database;
+    return await db.query('Sales');
+  }
+
+  Future<Map<String, dynamic>> getSaleById(int saleId) async {
+    Database db = await database;
+    List<Map<String, dynamic>> sales = await db.query('Sales', where: 'id = ?', whereArgs: [saleId]);
+
+    if (sales.isNotEmpty) {
+      return sales.first;
+    } else {
+      return {}; // Return empty map if sale with the given ID is not found
+    }
+  }
+  Future<List<Map<String, dynamic>>> getSalesForDate(String date) async {
+    Database db = await database;
+    return await db.query(
+      'Sales',
+      where: 'date = ?',
+      whereArgs: [date],
+    );
+  }
+
+  Future<int> updateSale(Map<String, dynamic> sale) async {
+    Database db = await database;
+    return await db.update('Sales', sale, where: 'id = ?', whereArgs: [sale['id']]);
+  }
+
+  Future<int> deleteSale(int saleId) async {
+    Database db = await database;
+    return await db.delete('Sales', where: 'id = ?', whereArgs: [saleId]);
   }
 
   Future<int> insertUser(Map<String, dynamic> user) async {

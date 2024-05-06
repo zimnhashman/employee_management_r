@@ -1,9 +1,8 @@
 import 'package:employee_management_r/screens/admin/announcements_screen.dart';
-import 'package:employee_management_r/screens/admin/tasks.dart';
-import 'package:employee_management_r/screens/employee/dailywork_report.dart';
 import 'package:employee_management_r/screens/employee/employee_applications.dart';
 import 'package:employee_management_r/screens/employee/employee_profile.dart';
 import 'package:employee_management_r/screens/employee/employee_sales.dart';
+import 'package:employee_management_r/screens/employee/employee_tasks.dart';
 import 'package:flutter/material.dart';
 import 'package:employee_management_r/constants/colors.dart';
 
@@ -49,13 +48,13 @@ class _DashboardTilesState extends State<DashboardTiles> {
           margin: const EdgeInsets.all(10),
           width: width,
           height: 150,
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
                 child: Text(
                   'Menu',
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w500,
                       color: Colors.white),
@@ -213,7 +212,7 @@ class _DashboardTilesState extends State<DashboardTiles> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) =>  EmployeeSales()));
+                            builder: (_) =>  EmployeeSalesPage()));
                   },
                   child: const Card(
                     margin: EdgeInsets.all(10),
@@ -243,7 +242,7 @@ class _DashboardTilesState extends State<DashboardTiles> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                        builder: (_) =>  DailyWorkReport()));
+                        builder: (_) =>  WorkReportPage()));
                   },
                   child: const Card(
                     margin: EdgeInsets.all(10),
