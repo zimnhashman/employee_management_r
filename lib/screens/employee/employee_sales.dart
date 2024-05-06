@@ -28,6 +28,12 @@ class _EmployeeSalesPageState extends State<EmployeeSalesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white), // White back button
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: const Text('Sales Dashboard', style: TextStyle(
           color: Colors.white,
         ),),

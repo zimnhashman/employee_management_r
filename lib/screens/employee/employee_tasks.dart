@@ -12,13 +12,12 @@ class _WorkReportPageState extends State<WorkReportPage> {
   @override
   void initState() {
     super.initState();
-    _loadWorkReport();
+    _loadSales();
   }
 
-  Future<void> _loadWorkReport() async {
-    DateTime now = DateTime.now();
-    String formattedDate = '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
-    List<Map<String, dynamic>> sales = await DatabaseHelper.instance.getSalesForDate(formattedDate);
+  Future<void> _loadSales() async {
+    List<Map<String, dynamic>> sales = await DatabaseHelper.instance
+        .getAllSales();
     setState(() {
       _salesList = sales;
     });
@@ -28,21 +27,28 @@ class _WorkReportPageState extends State<WorkReportPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sales for Today', style: TextStyle(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white), // White back button
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        title: const Text('Work Report Page', style: TextStyle(
           color: Colors.white,
-        )),
-        backgroundColor: Colors.purple,
+        ),),
+        backgroundColor: Colors.deepPurple,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Sales for Today (${DateTime.now().toString().substring(0, 10)})',
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            const Text(
+              'Sales Today',
+              style: TextStyle(fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple),
             ),
-            const SizedBox(height: 20),
             Expanded(
               child: Card(
                 elevation: 4,
@@ -50,7 +56,8 @@ class _WorkReportPageState extends State<WorkReportPage> {
                   itemCount: _salesList.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text('Sales: \$${_salesList[index]['sales']}'),
+                      title: Text(
+                          'Date: ${_salesList[index]['date']} - Sales: \$${_salesList[index]['sales']}'),
                     );
                   },
                 ),
